@@ -15,10 +15,13 @@ window.onresize = ()=>{
 
 
 let pressed = false;
-// window.event.cancelBubble = true
 document.addEventListener("click",function(e){
-    if(document.querySelector('.hide').style.display  === 'grid'){
-        [...document.querySelectorAll('.hide')].forEach((ee)=> ee.style.display = 'none')
+    if(e.target.className !== "clicker" && [...document.querySelectorAll('.hide')].some((ee)=> ee.style.display  === 'grid')){
+        [...document.querySelectorAll('.hide')].forEach((ee)=> {
+            ee.style.display = 'none'
+            ee.previousElementSibling.children[0].innerHTML = '<svg width="10" height="6" xmlns="http://www.w3.org/2000/svg"><path stroke="#686868" stroke-width="1.5" fill="none" d="m1 1 4 4 4-4"/></svg>';
+        })
+        pressed = false
     }
     if (e.target.className !== "clicker") return;
     if(!pressed){
